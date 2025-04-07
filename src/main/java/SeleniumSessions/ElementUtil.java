@@ -1,6 +1,7 @@
 package SeleniumSessions;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -148,6 +149,33 @@ public class ElementUtil {
 	} 
 return locator;	
 }
+	 /**
+	  * Streams
+	  * @param locator
+	  * @return
+	  */
+	 public List<String> fetchElementsText(By locator) 
+	 {
+	 
+		 List<String> eleTextList = new ArrayList<String>();
+		  
+		 getElements(locator)
+		         .stream()
+		             .filter(e -> !e.getText().isEmpty())
+		                 .forEach(e -> eleTextList.add(e.getText()));
+		             
+		  return eleTextList;           
+	 }
+	 
+	 public void printElementText(By locator) 
+	 {
+			getElements(locator)
+					.stream()
+						.filter(e -> !e.getText().isEmpty())
+							.forEach(e -> System.out.println(e.getText()));
+	 }
+
+	 
 	/** select drop down Utils
 	 *  
 	 * @param locator
